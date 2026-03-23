@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     /* Кольори Telegram (світла тема) */
     --tg-bg: #f8fafc;
@@ -23,12 +27,11 @@ body, html {
     background: linear-gradient(90deg, var(--global-bg-left) 50%, var(--global-bg-right) 50%);
     overflow: hidden;
     color: #1e293b;
-    font-size: 18px; 
+    font-size: 16px; 
 }
 
 h1, h2, h3, .badge { font-family: 'Montserrat', sans-serif; }
 
-/* Приховуємо цитати */
 .hidden-cite { display: none; }
 
 /* --- Фоновий шар зі стікерами --- */
@@ -43,7 +46,6 @@ h1, h2, h3, .badge { font-family: 'Montserrat', sans-serif; }
 }
 .stickers-right .sticker { opacity: 0.1; filter: grayscale(100%); }
 
-/* Позиції та затримки для 8 стікерів на кожній стороні */
 .s1 { top: 10%; left: 20%; animation-duration: 25s; }
 .s2 { top: 70%; left: 60%; animation-duration: 18s; animation-direction: reverse; }
 .s3 { top: 40%; left: 80%; animation-duration: 22s; font-size: 4rem; }
@@ -60,14 +62,15 @@ h1, h2, h3, .badge { font-family: 'Montserrat', sans-serif; }
     100% { transform: translateY(0) translateX(0) rotate(0deg); }
 }
 
+/* --- Презентація --- */
 .presentation { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 5; }
 
-/* Анімація появи слайдів */
 .slide {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
     opacity: 0; visibility: hidden; transition: all 0.5s ease-in-out;
     transform: translateY(15px);
+    padding: 20px;
 }
 .slide.active { opacity: 1; visibility: visible; transform: translateY(0); z-index: 10; }
 
@@ -75,59 +78,100 @@ h1, h2, h3, .badge { font-family: 'Montserrat', sans-serif; }
 .board {
     background: var(--board-bg); border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-    width: 95%; max-width: 1400px; padding: 40px 50px;
-    display: flex; flex-direction: column; max-height: 90vh;
+    width: 100%; max-width: 1300px; 
+    padding: 35px 45px;
+    display: flex; flex-direction: column; 
+    max-height: 90vh;
 }
 
 /* Обкладинка */
-.cover-board { text-align: center; align-items: center; justify-content: center; padding: 80px 50px; }
-.badge { background: #f1f5f9; color: #475569; padding: 10px 25px; border-radius: 25px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; display: inline-block; border: 1px solid #cbd5e1; font-weight: bold;}
-.cover-board h1 { font-size: 4rem; margin: 15px 0; color: #0f172a; }
-.vs { color: #94a3b8; font-weight: 400; font-size: 3rem; font-style: italic; margin: 0 20px; }
-.cover-board p { font-size: 1.4rem; color: #64748b; margin-bottom: 45px; }
-.start-btn { background: #0f172a; color: #fff; border: none; padding: 18px 45px; border-radius: 10px; font-size: 1.25rem; font-family: 'Montserrat'; cursor: pointer; transition: 0.3s; font-weight: bold;}
+.cover-board { text-align: center; align-items: center; justify-content: center; padding: 60px 40px; }
+.badge { background: #f1f5f9; color: #475569; padding: 8px 20px; border-radius: 25px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: inline-block; border: 1px solid #cbd5e1; font-weight: bold;}
+.cover-board h1 { font-size: 3.5rem; margin: 10px 0; color: #0f172a; }
+.vs { color: #94a3b8; font-weight: 400; font-size: 2.5rem; font-style: italic; margin: 0 15px; }
+.cover-board p { font-size: 1.3rem; color: #64748b; margin-bottom: 40px; }
+.start-btn { background: #0f172a; color: #fff; border: none; padding: 15px 35px; border-radius: 10px; font-size: 1.1rem; font-family: 'Montserrat'; cursor: pointer; transition: 0.3s; font-weight: bold;}
 .start-btn:hover { background: #334155; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
 
 /* Заголовки слайдів */
-.slide-title { text-align: center; font-size: 2.2rem; margin-top: 0; margin-bottom: 30px; color: #0f172a; border-bottom: 3px solid #f1f5f9; padding-bottom: 15px; }
+.slide-title { text-align: center; font-size: 2rem; margin-top: 0; margin-bottom: 25px; color: #0f172a; border-bottom: 3px solid #f1f5f9; padding-bottom: 10px; }
 
 /* Розділення на дві половини */
-.split-layout { display: flex; gap: 40px; flex: 1; overflow-y: auto; padding-right: 10px; }
-.half { flex: 1; border-radius: 15px; padding: 35px; display: flex; flex-direction: column; }
+.split-layout { display: flex; gap: 30px; flex: 1; overflow-y: auto; padding-right: 10px; }
+.half { flex: 1; border-radius: 15px; padding: 30px; display: flex; flex-direction: column; }
 
 /* Дизайн половини Telegram */
 .tg-half { background: var(--tg-bg); border: 2px solid var(--tg-border); color: var(--tg-text); }
-.tg-half h3 { color: var(--tg-accent); font-size: 2rem; margin-top: 0; margin-bottom: 25px; }
-.tg-half ul { padding-left: 25px; margin: 0; }
-.tg-half li { margin-bottom: 18px; font-size: 1.25rem; line-height: 1.6; font-weight: 600; }
-.tg-half p { font-size: 1.25rem; line-height: 1.6; font-weight: 600; }
+.tg-half h3 { color: var(--tg-accent); font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; }
+.tg-half ul { padding-left: 20px; margin: 0; }
+.tg-half li, .tg-half p { margin-bottom: 15px; font-size: 1.15rem; line-height: 1.6; font-weight: 600; }
 
 /* Дизайн половини Signal */
 .sig-half { background: var(--sig-bg); border: 2px solid var(--sig-border); color: var(--sig-text); font-family: 'Fira Code', monospace; }
-.sig-half h3 { color: #fff; font-size: 2rem; margin-top: 0; margin-bottom: 25px; border-bottom: 2px dashed var(--sig-border); padding-bottom: 12px; display: inline-block; }
-.sig-half ul { padding-left: 25px; margin: 0; }
-.sig-half li { margin-bottom: 18px; font-size: 1.2rem; line-height: 1.6; list-style-type: square; }
-.sig-half p { font-size: 1.2rem; line-height: 1.6; }
+.sig-half h3 { color: #fff; font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px dashed var(--sig-border); padding-bottom: 10px; display: inline-block; }
+.sig-half ul { padding-left: 20px; margin: 0; }
+.sig-half li { margin-bottom: 15px; font-size: 1.1rem; line-height: 1.6; list-style-type: square; }
+.sig-half p { font-size: 1.1rem; line-height: 1.6; }
 
 /* Теоретичні блоки */
 .center-theory { align-items: center; justify-content: center; }
-.theory-content { background: #f8fafc; border-left: 6px solid #8b5cf6; padding: 40px; border-radius: 10px; font-size: 1.4rem; line-height: 1.7; width: 100%; max-width: 1000px; color: #334155; }
-.theory-content p { margin-bottom: 20px; }
+.theory-content { background: #f8fafc; border-left: 6px solid #8b5cf6; padding: 35px; border-radius: 10px; font-size: 1.25rem; line-height: 1.7; width: 100%; max-width: 900px; color: #334155; }
+.theory-content p { margin-bottom: 15px; }
 .theory-content p:last-child { margin-bottom: 0; }
 .sig-style { background: #171717; color: #e5e5e5; font-family: 'Fira Code'; border-left-color: var(--sig-accent); }
 
 /* Елементи висновку */
-.mb-4 { margin-bottom: 25px; }
-.verdict { background: rgba(0,0,0,0.05); padding: 20px; border-radius: 10px; font-size: 1.25rem; line-height: 1.6; margin-top: auto; border-left: 4px solid var(--tg-accent); font-family: 'Nunito', sans-serif;}
+.mb-4 { margin-bottom: 20px; }
+.verdict { background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; font-size: 1.15rem; line-height: 1.6; margin-top: auto; border-left: 4px solid var(--tg-accent); font-family: 'Nunito', sans-serif;}
 .sig-half .verdict { background: rgba(255,255,255,0.05); border-left: 4px solid var(--sig-accent); }
 
 /* Навігація */
-.controls { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; align-items: center; gap: 25px; background: #ffffff; padding: 12px 30px; border-radius: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; display: none; }
-.nav-btn { background: #f1f5f9; color: #0f172a; border: none; font-weight: bold; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.controls { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; align-items: center; gap: 20px; background: #ffffff; padding: 10px 25px; border-radius: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; display: none; }
+.nav-btn { background: #f1f5f9; color: #0f172a; border: none; font-weight: bold; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
 .nav-btn:hover { background: #cbd5e1; }
-.progress-indicator { font-family: 'Fira Code', monospace; font-size: 1.3rem; color: #334155; font-weight: 700; min-width: 70px; text-align: center; }
+.progress-indicator { font-family: 'Fira Code', monospace; font-size: 1.1rem; color: #334155; font-weight: 700; min-width: 60px; text-align: center; }
 
-::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 .sig-half::-webkit-scrollbar-thumb { background: #404040; }
+
+/*Адаптивність*/
+@media (max-width: 900px) {
+    body { font-size: 14px; }
+    .board { padding: 25px 20px; max-height: 85vh; }
+    
+    /* Переводимо дві половинки (TG та Signal) у колонку одна над одною */
+    .split-layout { flex-direction: column; gap: 20px; padding-right: 5px; }
+    .half { padding: 20px; }
+    
+    .slide-title { font-size: 1.6rem; margin-bottom: 15px; }
+    .cover-board h1 { font-size: 2.5rem; }
+    .vs { font-size: 1.8rem; }
+    .theory-content { padding: 20px; font-size: 1.1rem; }
+    
+    /* Додаємо місце для кнопок навігації, щоб вони не перекривали текст */
+    .controls { bottom: 15px; padding: 8px 20px; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    body { font-size: 12px; } 
+    
+    .slide { padding: 10px; }
+    .board { padding: 15px; max-height: 95vh; }
+    
+    .cover-board { padding: 15px; }
+    .cover-board h1 { font-size: 2.2rem; margin: 5px 0; }
+    .cover-board p { margin-bottom: 15px; font-size: 1.1rem; }
+    .badge { margin-bottom: 10px; padding: 5px 15px; }
+    
+    .slide-title { font-size: 1.4rem; margin-bottom: 10px; padding-bottom: 5px; }
+    
+    .split-layout { gap: 15px; }
+    .half { padding: 15px; }
+    .half h3 { margin-bottom: 10px; font-size: 1.4rem; }
+    .half li, .half p { margin-bottom: 10px; font-size: 1rem; }
+    
+    .theory-content { padding: 15px; font-size: 1rem; }
+    .controls { bottom: 5px; transform: translateX(-50%) scale(0.8); }
+}
